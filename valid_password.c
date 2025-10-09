@@ -9,14 +9,42 @@
  * Minimum of 2 Lowercase Letters + 2 Uppercase Letters
  */
 bool valid_password(const char* s) {
+    if (s == NULL){
+        return false;
+    }
+
     bool lowerCase2 = false;
     bool upperCase2 = false;
-    size_t length = 0;
     int upper = 0;
     int lower = 0;
-    while (*s != '\0'){
-        length++;
-        if (isupper(s)){
+    int x = 0;
+    while (s[x] != '\0'){
+        x++;
+    }
+
+    if (x<6 || x > 10) return false;
+
+    for ( int i=0;i<x;i++){
+        if (islower(s[i])){
+            lower++;
+        }
+        if (isupper(s[i])){
+            upper++;
+        }
+    }
+    if (lower<2 || upper<2){
+        return false;
+    }
+    //Special Chars not allowed
+    for (int i=0;i<x;i++){
+        if (!isalnum(s[i])){
+            return false;
+        }
+    }
+    return true;
+}
+/*
+if (isupper(s)){
             upper++;
         }
         if (islower(s)){
@@ -25,7 +53,4 @@ bool valid_password(const char* s) {
         if (upper == 2 && lower == 1 && (6<=length && length<=10)){
             return true;
         }
-    }
-
-    return false;
-}
+*/
