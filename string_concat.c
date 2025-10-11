@@ -10,6 +10,9 @@
 void string_concat(char* src1, int src1_cap, const char* src2) {
     int len = 0;
     int len2 = 0;
+
+    if (src2==NULL) return;
+
     while (src1[len] != '\0'){
         len++;
     }
